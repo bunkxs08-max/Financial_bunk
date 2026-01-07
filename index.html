@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Buku Financial Freelancer Art (Template 1)</title>
+  <style>
+    :root{
+      --bg:#0b1020; --card:#121a33; --card2:#0f1630; --text:#e9ecff; --muted:#a9b1d6;
+      --line: rgba(255,255,255,.08);
+      --green:#22c55e; --yellow:#f59e0b; --red:#ef4444; --blue:#3b82f6; --gray:#94a3b8;
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: radial-gradient(900px 450px at 20% 0%, rgba(59,130,246,.18), transparent 60%),
+                  radial-gradient(900px 450px at 80% 10%, rgba(34,197,94,.14), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+    }
+    header{
+      padding:28px 18px 10px;
+      max-width:1200px; margin:0 auto;
+      display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+    }
+    .title h1{margin:0; font-size:20px; letter-spacing:.2px}
+    .title p{margin:8px 0 0; color:var(--muted); font-size:13px; line-height:1.35}
+    .toolbar{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .btn{
+      border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--text);
+      padding:10px 12px; border-radius:12px; cursor:pointer;
+      display:inline-flex; gap:8px; align-items:center; font-weight:600; font-size:13px;
+    }
+    .btn:hover{background:rgba(255,255,255,.06)}
+    .btn.primary{border-color:rgba(59,130,246,.35); background:rgba(59,130,246,.16)}
+    .btn.danger{border-color:rgba(239,68,68,.35); background:rgba(239,68,68,.12)}
+    .wrap{max-width:1200px; margin:0 auto; padding:0 18px 40px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+    @media(min-width:980px){
+      .grid{grid-template-columns: 1fr 1fr;}
+      .span2{grid-column:1 / -1;}
+    }
+    section.card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      overflow:hidden;
+    }
+    .card-head{
+      padding:14px 14px 10px;
+      display:flex; align-items:flex-end; justify-content:space-between; gap:10px; flex-wrap:wrap;
+      background:rgba(0,0,0,.08);
+      border-bottom:1px solid var(--line);
+    }
+    .card-head h2{margin:0; font-size:14px}
+    .card-head .hint{color:var(--muted); font-size:12px}
+    .card-body{padding:12px 14px 14px}
+    .table-wrap{overflow:auto; border-radius:14px; border:1px solid var(--line); background:rgba(0,0,0,.12)}
+    table{width:100%; border-collapse:collapse; min-width: 760px;}
+    th, td{padding:10px 10px; border-bottom:1px solid var(--line); font-size:12.5px; vertical-align:top}
+    th{color:#dbe2ff; text-align:left; background:rgba(255,255,255,.04); position:sticky; top:0; z-index:1}
+    tr:hover td{background:rgba(255,255,255,.03)}
+    .mono{font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1;}
+    .muted{color:var(--muted)}
+    .right{text-align:right}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 10px; border-radius:999px; font-weight:700; font-size:12px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      white-space:nowrap;
+    }
+    .dot{width:10px; height:10px; border-radius:999px; background:var(--gray); box-shadow:0 0 0 4px rgba(148,163,184,.12)}
+    .pill.green .dot{background:var(--green); box-shadow:0 0 0 4px rgba(34,197,94,.14)}
+    .pill.yellow .dot{background:var(--yellow); box-shadow:0 0 0 4px rgba(245,158,11,.14)}
+    .pill.red .dot{background:var(--red); box-shadow:0 0 0 4px rgba(239,68,68,.14)}
+    .pill.blue .dot{background:var(--blue); box-shadow:0 0 0 4px rgba(59,130,246,.14)}
+
+    .kpi{
+      display:grid; gap:10px;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+    }
+    @media(min-width:560px){
+      .kpi{grid-template-columns: repeat(4, minmax(0,1fr));}
+    }
+    .kpi .box{
+      border:1px solid var(--line); background:rgba(0,0,0,.12);
+      border-radius:16px; padding:12px;
+    }
+    .kpi .box .label{color:var(--muted); font-size:12px}
+    .kpi .box .val{margin-top:6px; font-size:16px; font-weight:800}
+    .kpi .box .sub{margin-top:4px; color:var(--muted); font-size:11.5px}
+    .search{
+      border:1px solid var(--line); background:rgba(0,0,0,.18); color:var(--text);
+      padding:10px 12px; border-radius:12px; min-width:240px;
+      outline:none;
+    }
+    .footer-note{
+      color:var(--muted); font-size:12px; margin-top:12px; line-height:1.35
+    }
+    .small{font-size:11.5px}
+  </style>
+</head>
+<body>
+<header>
+  <div class="title">
+    <h1>📘 Buku Financial Freelancer Art — Template 1</h1>
+    <p>
+      1 halaman web buat tracking: <b>Order</b>, <b>Income</b>, <b>Expense</b>, <b>Summary Bulanan</b>, dan <b>Client Tracking</b>.
+      <br/>Data disimpan <b>di browser</b> (localStorage). Bisa export/import JSON.
+    </p>
+  </div>
+
+  <div class="toolbar">
+    <input id="search" class="search" placeholder="Cari: nama klien / jenis order / catatan..." />
+    <button class="btn primary" id="btnAddSample">➕ Tambah contoh data</button>
+    <button class="btn" id="btnExport">⬇️ Export JSON</button>
+    <button class="btn" id="btnImport">⬆️ Import JSON</button>
+    <button class="btn danger" id="btnReset">🗑️ Reset data</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="kpi" id="kpi"></div>
+
+  <div class="grid" style="margin-top:14px;">
+    <!-- ORDER LIST -->
+    <section class="card span2">
+      <div class="card-head">
+        <div>
+          <h2>📄 ORDER LIST (MASTER ORDER)</h2>
+          <div class="hint">Status order & status bayar pakai simbol warna + tulisan</div>
+        </div>
+        <div class="hint small">Tip: edit data via JSON export → edit → import lagi (cara paling simpel untuk sekarang).</div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table id="tblOrders">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Tanggal Order</th>
+                <th>Nama Klien</th>
+                <th>Jenis Order</th>
+                <th class="right">Harga</th>
+                <th class="right">DP</th>
+                <th class="right">Sisa</th>
+                <th>Status Order</th>
+                <th>Status Bayar</th>
+                <th>Deadline</th>
+                <th>Catatan</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- INCOME LOG -->
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>📄 INCOME LOG (PEMASUKAN)</h2>
+          <div class="hint">Net Income = Jumlah Masuk − Fee</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table id="tblIncome" style="min-width:860px">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Nama Klien</th>
+                <th>Jenis Order</th>
+                <th class="right">Jumlah Masuk</th>
+                <th>Metode Bayar</th>
+                <th>Mata Uang</th>
+                <th class="right">Fee</th>
+                <th class="right">Net Income</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPENSE LOG -->
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <h2>📄 EXPENSE LOG (PENGELUARAN)</h2>
+          <div class="hint">Catat biaya software, asset, internet, dll</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table id="tblExpense" style="min-width:780px">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th>Jenis Pengeluaran</th>
+                <th>Keterangan</th>
+                <th class="right">Jumlah</th>
+                <th>Metode</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUMMARY BULANAN -->
+    <section class="card span2">
+      <div class="card-head">
+        <div>
+          <h2>📄 SUMMARY BULANAN</h2>
+          <div class="hint">Profit Bersih = Total Income − Total Expense</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table id="tblSummary" style="min-width:760px">
+            <thead>
+              <tr>
+                <th>Bulan</th>
+                <th class="right">Total Income</th>
+                <th class="right">Total Expense</th>
+                <th class="right">Profit Bersih</th>
+                <th class="right">Jumlah Order</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="footer-note">
+          Summary dihitung otomatis dari tabel Income/Expense dan Order List.
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT TRACKING -->
+    <section class="card span2">
+      <div class="card-head">
+        <div>
+          <h2>📄 CLIENT TRACKING (OPTIONAL)</h2>
+          <div class="hint">Repeat client & total bayar</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrap">
+          <table id="tblClients" style="min-width:760px">
+            <thead>
+              <tr>
+                <th>Nama Klien</th>
+                <th class="right">Total Order</th>
+                <th class="right">Total Bayar (Net)</th>
+                <th>Repeat Client</th>
+                <th>Catatan</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<input type="file" id="fileInput" accept="application/json" style="display:none" />
+
+<script>
+  // ---------- Helpers ----------
+  const fmtIDR = (n) => new Intl.NumberFormat('id-ID').format(Math.round(n || 0));
+  const ym = (dateStr) => { // "DD/MM/YYYY" -> "YYYY-MM"
+    if(!dateStr) return "";
+    const [d,m,y] = dateStr.split("/").map(s=>s.trim());
+    if(!y || !m) return "";
+    return `${y}-${String(m).padStart(2,"0")}`;
+  };
+  const ymLabel = (ymStr) => { // "YYYY-MM" -> "Mon YYYY" (ID)
+    if(!ymStr) return "";
+    const [y,m] = ymStr.split("-");
+    const names = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
+    return `${names[parseInt(m,10)-1]} ${y}`;
+  };
+
+  // Status badge
+  function pill(text){
+    const t = (text || "").toLowerCase();
+    let cls = "pill";
+    // bayar: DP (kuning), Lunas (hijau), Belum Bayar (merah), Cancel (abu)
+    if(["lunas","paid","masuk"].includes(t)) cls += " green";
+    else if(["dp","partial","pending"].includes(t)) cls += " yellow";
+    else if(["belum bayar","unpaid","overdue"].includes(t)) cls += " red";
+    else if(["on progress","wip","ongoing"].includes(t)) cls += " blue";
+    else cls += ""; // default gray
+
+    return `<span class="${cls}"><span class="dot"></span><span>${text || "-"}</span></span>`;
+  }
+
+  // ---------- Storage ----------
+  const KEY = "art_finance_template_v1";
+  const defaultData = {
+    orders: [],
+    income: [],
+    expense: [],
+    clientNotes: {} // { "Alex": "Fast payment" }
+  };
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(KEY);
+      if(!raw) return structuredClone(defaultData);
+      const parsed = JSON.parse(raw);
+      return {
+        orders: Array.isArray(parsed.orders)? parsed.orders : [],
+        income: Array.isArray(parsed.income)? parsed.income : [],
+        expense: Array.isArray(parsed.expense)? parsed.expense : [],
+        clientNotes: parsed.clientNotes && typeof parsed.clientNotes==="object" ? parsed.clientNotes : {}
+      };
+    } catch {
+      return structuredClone(defaultData);
+    }
+  }
+
+  function save(data){
+    localStorage.setItem(KEY, JSON.stringify(data));
+  }
+
+  // ---------- Render ----------
+  function render(){
+    const data = load();
+    const q = (document.getElementById("search").value || "").toLowerCase().trim();
+
+    // Filter Orders by search
+    const orders = data.orders.filter(o=>{
+      if(!q) return true;
+      const hay = `${o.client} ${o.type} ${o.note}`.toLowerCase();
+      return hay.includes(q);
+    });
+
+    // ORDER LIST
+    const tbO = document.querySelector("#tblOrders tbody");
+    tbO.innerHTML = orders.map((o, idx)=>{
+      const price = o.price||0, dp=o.dp||0;
+      const sisa = Math.max(0, price - dp);
+      return `
+        <tr>
+          <td class="mono">${idx+1}</td>
+          <td class="mono">${o.date||"-"}</td>
+          <td><b>${o.client||"-"}</b></td>
+          <td>${o.type||"-"}</td>
+          <td class="right mono">${fmtIDR(price)}</td>
+          <td class="right mono">${fmtIDR(dp)}</td>
+          <td class="right mono">${fmtIDR(sisa)}</td>
+          <td>${pill(o.orderStatus)}</td>
+          <td>${pill(o.payStatus)}</td>
+          <td class="mono">${o.deadline||"-"}</td>
+          <td class="muted">${o.note||""}</td>
+        </tr>
+      `;
+    }).join("");
+
+    // INCOME LOG
+    const income = data.income.filter(i=>{
+      if(!q) return true;
+      const hay = `${i.client} ${i.type}`.toLowerCase();
+      return hay.includes(q);
+    });
+    const tbI = document.querySelector("#tblIncome tbody");
+    tbI.innerHTML = income.map(i=>{
+      const net = (i.amount||0) - (i.fee||0);
+      return `
+        <tr>
+          <td class="mono">${i.date||"-"}</td>
+          <td><b>${i.client||"-"}</b></td>
+          <td>${i.type||"-"}</td>
+          <td class="right mono">${fmtIDR(i.amount||0)}</td>
+          <td>${i.method||"-"}</td>
+          <td class="mono">${i.currency||"IDR"}</td>
+          <td class="right mono">${fmtIDR(i.fee||0)}</td>
+          <td class="right mono"><b>${fmtIDR(net)}</b></td>
+          <td>${pill(i.status)}</td>
+        </tr>
+      `;
+    }).join("");
+
+    // EXPENSE LOG
+    const expense = data.expense.filter(e=>{
+      if(!q) return true;
+      const hay = `${e.category} ${e.desc}`.toLowerCase();
+      return hay.includes(q);
+    });
+    const tbE = document.querySelector("#tblExpense tbody");
+    tbE.innerHTML = expense.map(e=>`
+      <tr>
+        <td class="mono">${e.date||"-"}</td>
+        <td><b>${e.category||"-"}</b></td>
+        <td class="muted">${e.desc||""}</td>
+        <td class="right mono">${fmtIDR(e.amount||0)}</td>
+        <td>${e.method||"-"}</td>
+      </tr>
+    `).join("");
+
+    // SUMMARY BULANAN (computed)
+    // group by YYYY-MM from income/expense + count orders from order date
+    const sum = {}; // ym -> {income, expense, orders}
+    for(const i of data.income){
+      const k = ym(i.date);
+      if(!k) continue;
+      sum[k] = sum[k] || {income:0, expense:0, orders:0};
+      sum[k].income += ((i.amount||0) - (i.fee||0));
+    }
+    for(const e of data.expense){
+      const k = ym(e.date);
+      if(!k) continue;
+      sum[k] = sum[k] || {income:0, expense:0, orders:0};
+      sum[k].expense += (e.amount||0);
+    }
+    for(const o of data.orders){
+      const k = ym(o.date);
+      if(!k) continue;
+      sum[k] = sum[k] || {income:0, expense:0, orders:0};
+      sum[k].orders += 1;
+    }
+
+    const keys = Object.keys(sum).sort(); // chronological
+    const tbS = document.querySelector("#tblSummary tbody");
+    tbS.innerHTML = keys.map(k=>{
+      const s = sum[k];
+      const profit = (s.income||0) - (s.expense||0);
+      return `
+        <tr>
+          <td><b>${ymLabel(k)}</b> <span class="muted small">(${k})</span></td>
+          <td class="right mono">${fmtIDR(s.income||0)}</td>
+          <td class="right mono">${fmtIDR(s.expense||0)}</td>
+          <td class="right mono"><b>${fmtIDR(profit)}</b></td>
+          <td class="right mono">${fmtIDR(s.orders||0)}</td>
+        </tr>
+      `;
+    }).join("");
+
+    // CLIENT TRACKING (computed from orders + income)
+    const clients = {}; // name -> {orders, netPaid}
+    for(const o of data.orders){
+      const c = o.client || "Unknown";
+      clients[c] = clients[c] || {orders:0, netPaid:0};
+      clients[c].orders += 1;
+    }
+    for(const i of data.income){
+      const c = i.client || "Unknown";
+      clients[c] = clients[c] || {orders:0, netPaid:0};
+      clients[c].netPaid += ((i.amount||0) - (i.fee||0));
+    }
+    const clientArr = Object.entries(clients)
+      .map(([name,v])=>({name, ...v}))
+      .sort((a,b)=> (b.netPaid - a.netPaid) || (b.orders-a.orders) || a.name.localeCompare(b.name));
+
+    const tbC = document.querySelector("#tblClients tbody");
+    tbC.innerHTML = clientArr.filter(c=>{
+      if(!q) return true;
+      return c.name.toLowerCase().includes(q);
+    }).map(c=>{
+      const repeat = c.orders >= 2 ? pill("YES") : pill("NO");
+      const note = data.clientNotes[c.name] || "";
+      return `
+        <tr>
+          <td><b>${c.name}</b></td>
+          <td class="right mono">${fmtIDR(c.orders)}</td>
+          <td class="right mono"><b>${fmtIDR(c.netPaid)}</b></td>
+          <td>${repeat}</td>
+          <td class="muted">${note}</td>
+        </tr>
+      `;
+    }).join("");
+
+    // KPI
+    const netIncomeTotal = data.income.reduce((a,i)=> a + ((i.amount||0)-(i.fee||0)), 0);
+    const expenseTotal = data.expense.reduce((a,e)=> a + (e.amount||0), 0);
+    const profitTotal = netIncomeTotal - expenseTotal;
+    const orderCount = data.orders.length;
+    const uniqueClients = new Set(data.orders.map(o=>o.client).filter(Boolean)).size;
+
+    document.getElementById("kpi").innerHTML = `
+      <div class="box">
+        <div class="label">Total Net Income</div>
+        <div class="val mono">${fmtIDR(netIncomeTotal)}</div>
+        <div class="sub">Setelah fee</div>
+      </div>
+      <div class="box">
+        <div class="label">Total Expense</div>
+        <div class="val mono">${fmtIDR(expenseTotal)}</div>
+        <div class="sub">Semua pengeluaran</div>
+      </div>
+      <div class="box">
+        <div class="label">Profit Bersih</div>
+        <div class="val mono">${fmtIDR(profitTotal)}</div>
+        <div class="sub">Income − Expense</div>
+      </div>
+      <div class="box">
+        <div class="label">Orders / Clients</div>
+        <div class="val mono">${fmtIDR(orderCount)} / ${fmtIDR(uniqueClients)}</div>
+        <div class="sub">Total order & klien unik</div>
+      </div>
+    `;
+  }
+
+  // ---------- Actions ----------
+  function addSample(){
+    const data = load();
+    if(data.orders.length || data.income.length || data.expense.length) return; // only if empty
+
+    data.orders = [
+      {
+        date:"05/01/2026", client:"Alex", type:"Full Body Anime",
+        price:500000, dp:250000,
+        orderStatus:"On Progress", payStatus:"DP",
+        deadline:"12/01/2026", note:"Revisi max 2x"
+      },
+      {
+        date:"06/01/2026", client:"Nina", type:"Bust Up Semi-Realistic",
+        price:350000, dp:350000,
+        orderStatus:"Done", payStatus:"Lunas",
+        deadline:"10/01/2026", note:"Background simple"
+      }
+    ];
+
+    data.income = [
+      { date:"06/01/2026", client:"Alex", type:"DP Full Body", amount:250000, method:"PayPal", currency:"IDR", fee:15000, status:"Masuk" },
+      { date:"06/01/2026", client:"Nina", type:"Lunas Bust Up", amount:350000, method:"Transfer", currency:"IDR", fee:0, status:"Masuk" }
+    ];
+
+    data.expense = [
+      { date:"07/01/2026", category:"Software", desc:"Clip Studio (bulanan)", amount:120000, method:"Debit" },
+      { date:"07/01/2026", category:"Internet", desc:"Paket internet", amount:150000, method:"E-Wallet" }
+    ];
+
+    data.clientNotes = {
+      "Alex":"Fast payment",
+      "Nina":"Suka order lagi"
+    };
+
+    save(data);
+    render();
+  }
+
+  function exportJSON(){
+    const data = load();
+    const blob = new Blob([JSON.stringify(data, null, 2)],
